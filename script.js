@@ -4,12 +4,29 @@ var questionsEl = document.getElementById("questions");
 var initalEl = document.getElementById("inital");
 var startEl = document.getElementById("start");
 var titleEl = document.getElementById("title");
+var choicesEl = document.getElementById('choices');
+
 
 var questions = [
     {
-        title:"Question", 
-        choices: ["","","",""],
-        answer: ""
+        title:"Which is a Boolean value?", 
+        choices: ["True","Nope","Yeah","Nah"],
+        answer: "True",
+    },
+    {
+        title: "Which is NOT a semantic element?",
+        choices: ["Form", "nav", "aside", "div"],
+        answer: "div",
+    },
+    {
+        title: "Which is a self closeing tag",
+        choices: ["<aside>", "<figure>", "<article>", "<br>"],
+        answer: "<br>",
+    },
+    {
+        title: "Which comparison operator means strictly equal to?",
+        choices: ["==", "!=", "<=", "==="],
+        answer: "===",
     }
 ]
 var qIndex = 0;
@@ -32,6 +49,11 @@ function timeTrack() {
 function getQuestions() {
     var currentQ = questions[qIndex];
     titleEl.textContent = currentQ.title;
+    var currentQChoice = currentQ.choices;
+    choicesEl.textContent = currentQChoice;
+    
+
+    for(i=0; i <currentQ.length; i++){}
     
 
 
