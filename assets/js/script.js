@@ -43,11 +43,28 @@ startEl.addEventListener("click", () => {
   titleEl.textContent = questions[0].title;
   optionEl.forEach((a, b) => {
     a.textContent = questions[0].choices[b];
+    showContent(questionsEl);
+    hideContent(welcomeEl);
   });
 });
 
 function setTime() {
   timeRemaining = 20;
   timeEl.textContent = `Time: ${timeRemaining}`;
-  
+  let timeI = setInterval(() => {
+    if (timeRemaining > 1) {
+      --timeRemaining;
+      timeEl.textContent = `Time: ${timeRemaining}`;
+    } else {
+      exit();
+      clearInterval(timeI);
+    }
+  });
+}
+
+function showContent(element) {
+  element.classList.remove("display-nothing");
+}
+function hideContent(element) {
+  element.classList.add("display-nothing");
 }
