@@ -5,6 +5,8 @@ var initalEl = document.getElementById("inital");
 var startEl = document.getElementById("start");
 var titleEl = document.getElementById("title");
 var optionEl = document.querySelectorAll(".option");
+var scoreMessage = document.getElementById("score-message");
+var doneEl = document.getElementById("done");
 
 var currentQ = 0;
 var currentScore = 0;
@@ -67,4 +69,14 @@ function showContent(element) {
 }
 function hideContent(element) {
   element.classList.add("display-nothing");
+}
+
+function exit() {
+  hideContent(questionsEl);
+  endingScore = currentScore;
+  endingTime = timeRemaining;
+  timeRemaining = 0;
+  timeEl.textContent = `Time: ${timeRemaining}`;
+  scoreMessage.textContent = `Score: ${endingScore}`;
+  showContent(doneEl);
 }
