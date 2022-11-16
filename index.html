@@ -9,31 +9,44 @@
 </head>
 
 <body>
-
-    <div>
-        <a href="#">High Score</a>
-    </div>
-
-    <div>
-        Time: <span id="time">0</span>
-    </div>
-
+    <header>
+        <h2 id="high-score"> High Score </h2>
+        <div>
+            Time: <span id="time">0</span>
+        </div>
+    </header>
     <div>
         <div id="welcome">
             <h1>Welcome to the Quiz!</h1>
-            <p>Click the start button to enter the quiz. You'll have 60 seconds to answer this multiple choice quiz. Be careful, wrong answers will deplete your timer by 15 seconds!</p>
+            <p>Click the start button to enter the quiz. You'll have 60 seconds to answer this multiple choice quiz. Be
+                careful, wrong answers will deplete your timer by 15 seconds!</p>
             <button id="start">Start Quiz</button>
         </div>
         <div id="questions" class="view">
             <div id="title"></div>
-            <div id="choices"></div>
+            <button class="option">Option 1</button>
+            <button class="option">Option 2</button>
+            <button class="option">Option 3</button>
+            <button class="option">Option 4</button>
         </div>
-        <div id="inital" class="view">Initals form here.</div>
-       
-    
-
-    
+        <div id="done" class="display-nothing">
+            <div>Finished!</div>
+            <p id="score-message">Final score: </p>
+            <form>
+                <div for="initial" class="view">Initals form here:</div>
+                <input type="text" id="initial">
+                <button type="submit" id="initial-button">Submit</button>
+            </form>
+        </div>
+        <div id="score" class="display-nothing">
+            <h2>High Score</h2>
+            <ol id="scoreboardLi">
+                <li></li>
+            </ol>
+            <button id="return-button">Return to start!</button>
+        </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="script.js"></script>
 </body>
 

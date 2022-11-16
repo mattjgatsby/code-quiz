@@ -40,9 +40,9 @@ var timerId;
 function timeTrack() {
         time--;
         timeEl.textContent = time;
-        // if(time <= 0) {
-        //     quizEnd();
-        // }
+        if(time <= 0) {
+            quizEnd();
+        }
 }
 // this function will display title, display questions Array.title
 
@@ -51,17 +51,19 @@ function getQuestions() {
     titleEl.textContent = currentQ.title;
     var currentQChoice = currentQ.choices;
     choicesEl.textContent = currentQChoice;
+
+    for(var i = 0; i < currentQ.length; i++) {
+        var choiceBtn = $('<button>');
+        choiceBtn.addClass('choice-button btn btn-info');
+        choiceBtn.attr('data-choice', currentQ[i]);
+        choiceBtn.text(currentQ[i]);
+
+    }
     
-
-    for(i=0; i <currentQ.length; i++){}
-    
-
-
     // for loop through the choices, each index process will create a Button
     // set attribute to button class = choice, add vaule of index to the button 
     // var . onlick = function, 
 }
-
 
 // after event listner we hide the welcome, unhide the view questions, and start the timeEl.
 function startQuiz () {
@@ -73,3 +75,12 @@ function startQuiz () {
 }
 
 startEl.addEventListener("click", startQuiz);
+
+
+function quizEnd(){
+    questionsEl.setAttribute("class", "view");
+    clearInterval(timerId);
+
+}
+
+//createElement("<div>") Element.Id("farely + i") 
