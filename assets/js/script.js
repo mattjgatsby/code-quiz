@@ -19,22 +19,22 @@ var questions = [
   {
     title: "Which is a Boolean value?",
     choices: ["True", "Nope", "Yeah", "Nah"],
-    answer: "True",
+    answer: 1,
   },
   {
     title: "Which is NOT a semantic element?",
     choices: ["Form", "nav", "aside", "div"],
-    answer: "div",
+    answer: 3,
   },
   {
     title: "Which is a self closeing tag",
     choices: ["<aside>", "<figure>", "<article>", "<br>"],
-    answer: "<br>",
+    answer: 3,
   },
   {
     title: "Which comparison operator means strictly equal to?",
     choices: ["==", "!=", "<=", "==="],
-    answer: "===",
+    answer: 3,
   },
 ];
 
@@ -57,11 +57,11 @@ function setTime() {
     if (timeRemaining > 1) {
       --timeRemaining;
       timeEl.textContent = `Time: ${timeRemaining}`;
-    } else {
+    } else if (timeRemaining <= 1) {
       exit();
       clearInterval(timeI);
     }
-  });
+  }, 1000);
 }
 
 function showContent(element) {
@@ -80,3 +80,22 @@ function exit() {
   scoreMessage.textContent = `Score: ${endingScore}`;
   showContent(doneEl);
 }
+
+optionEl.forEach((element) => {
+  element.addEventListener("click", () => {
+    if (element.getAttribute("option") == questions[currentQ]?.answer) {
+      ++currentScore;
+    } else {
+      timeRemaining = timeRemaining - 5;
+    }
+    if (currentQ === questions.length - 1 || timeRemaining <= 0) {
+      exit();
+    } else {
+      ++currentQ;
+      questionsEl.textContent = questions[currentQ].title;
+      optionEl.forEach((a, b) => {
+        a.textContent = questions[currentQ].choices[b];
+      });
+    }
+  });
+});
