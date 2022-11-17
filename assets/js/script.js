@@ -6,7 +6,9 @@ var startEl = document.getElementById("start");
 var titleEl = document.getElementById("title");
 var optionEl = document.querySelectorAll(".option");
 var scoreMessage = document.getElementById("score-message");
+var scoreEl = document.getElementById("score");
 var doneEl = document.getElementById("done");
+var form = document.querySelector("form");
 
 var currentQ = 0;
 var currentScore = 0;
@@ -19,7 +21,7 @@ var questions = [
   {
     title: "Which is a Boolean value?",
     choices: ["True", "Nope", "Yeah", "Nah"],
-    answer: 1,
+    answer: 0,
   },
   {
     title: "Which is NOT a semantic element?",
@@ -47,6 +49,25 @@ startEl.addEventListener("click", () => {
     a.textContent = questions[0].choices[b];
     showContent(questionsEl);
     hideContent(welcomeEl);
+  });
+});
+
+optionEl.forEach((element) => {
+  element.addEventListener("click", () => {
+    if (element.getAttribute("data-option") == questions[currentQ]?.answer) {
+      currentScore++;
+    } else {
+      timeRemaining = timeRemaining - 5;
+    }
+    if (currentQ == questions.length - 1 || timeRemaining <= 0) {
+      exit();
+    } else {
+      ++currentQ;
+      questionsEl.textContent = questions[currentQ].title;
+      optionEl.forEach((a, b) => {
+        a.textContent = questions[0].choices[b];
+      });
+    }
   });
 });
 
@@ -81,21 +102,26 @@ function exit() {
   showContent(doneEl);
 }
 
-optionEl.forEach((element) => {
-  element.addEventListener("click", () => {
-    if (element.getAttribute("option") == questions[currentQ]?.answer) {
-      ++currentScore;
+form.addEventListener("submit", (e) => {
+  let initial = document.querySelector("#initial").value;
+  let score = JSON.parse(localStorage.getItem("score"));
+  let userS = {
+    initial: initial,
+    score: endingScore,
+  };
+  e.preventDefault();
+  if (initial) {
+    hideContent(doneEl);
+    showContent(scoreEl);
+    if(score) {
+      score.push(userS)
     } else {
-      timeRemaining = timeRemaining - 5;
+      score = [userS]
     }
-    if (currentQ === questions.length - 1 || timeRemaining <= 0) {
-      exit();
-    } else {
-      ++currentQ;
-      questionsEl.textContent = questions[currentQ].title;
-      optionEl.forEach((a, b) => {
-        a.textContent = questions[currentQ].choices[b];
-      });
-    }
-  });
+    localStorage.setItem("score", JSON.stringify(score))
+    hideContent(doneEl)
+    showContent(scoreEl)
+  }
 });
+
+
