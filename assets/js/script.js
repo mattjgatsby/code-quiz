@@ -33,6 +33,16 @@ let questions = [
     choices: ["==", "!=", "<=", "==="],
     answer: 3,
   },
+  {
+    title: "What method outputs a message to the web console?",
+    choices: ["sort()", "console.log()", "map()", "filter()"],
+    answer: 1,
+  },
+  {
+    title: "Which is a way to declare a variable in JavaScript",
+    choices: ["let", "please", "here", "make"],
+    answer: 0,
+  }
 ];
 
 let currentQ = 0;
