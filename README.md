@@ -3,6 +3,9 @@
 ## Description
 In this app I put together a simple quiz on code topics relating to JavaScript and HTML. I made this application to practice JavaScript functions, event listeners, and appending elements to a page.
 
+## Visit the Site!
+[Link here!](https://mattjgatsby.github.io/code-quiz/)
+
 ## Technology Used
 * HTML
 * JavaScript
