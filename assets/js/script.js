@@ -64,7 +64,7 @@ optionEl.forEach((element) => {
       exit();
     } else {
       currentQ++;
-      questionsEl.textContent = questions[currentQ].title;
+      titleEl.textContent = questions[currentQ].title;
       optionEl.forEach((a, b) => {
         a.textContent = questions[currentQ].choices[b];
       });
