@@ -10,6 +10,7 @@ let scoreEl = document.getElementById("score");
 let doneEl = document.getElementById("done");
 let form = document.querySelector("form");
 let returnBtn = document.getElementById("return-button");
+let scoreList = document.getElementById("scoreboardLi");
 
 let questions = [
   {
@@ -104,7 +105,6 @@ function exit() {
   endingTime = timeRemaining;
   timeRemaining = 0;
   currentQ = 0;
-  currentScore = 0;
   timeEl.textContent = `Time: ${timeRemaining}`;
   scoreMessage.textContent = `Score: ${endingScore}`;
   showContent(doneEl);
@@ -129,21 +129,22 @@ form.addEventListener("submit", (e) => {
     localStorage.setItem("score", JSON.stringify(score));
     hideContent(doneEl);
     showContent(scoreEl);
+    scoreBoard();
   }
 });
 
-// function scoreBoard() {
-//   let item = document.querySelectorAll("li");
-//   item.forEach((element) => {
-//     element.remove();
-//   });
-//   let score = JSON.parse(localStorage.getItem("score"));
-//   score.sort((a, b) => {
-//     return b.score - a.score;
-//   });
-//   score.forEach((c, d) => {
-//     let li = document.createElement("li");
-//     li.textContent = `${d + 1}. ${c.initial} - ${c.score}`;
-//     scoreList.appendchild(li);
-//   });
-// }
+function scoreBoard() {
+  let item = document.querySelectorAll("li");
+  item.forEach((element) => {
+    element.remove();
+  });
+  let score = JSON.parse(localStorage.getItem("score"));
+  score.sort((a, b) => {
+    return b.score - a.score;
+  });
+  score.forEach((c, d) => {
+    let li = document.createElement("li");
+    li.textContent = `${c.initial} - ${c.score}`;
+    scoreList.appendChild(li);
+  });
+}
